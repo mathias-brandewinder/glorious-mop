@@ -66,6 +66,9 @@ let Run(myTimer: TimerInfo, log: TraceWriter) =
 
     log.Info "Starting affiliates meetup report"
 
+    let now = DateTime.Now
+    let horizon = now.AddDays 60.0
+
     let message =
         [ 
             "sfsharp" 
@@ -77,8 +80,9 @@ let Run(myTimer: TimerInfo, log: TraceWriter) =
             "FSharp-Toronto"
             "FSharping"
         ]
-        |> List.collect (eventsFor >> Seq.toList) 
+        |> List.collect (eventsFor >> Seq.toList)
         |> List.sortBy (fun m -> m.Time)
+        |> List.filter (fun m -> m.Time <= horizon)
         |> List.map format
         |> String.concat "\n"
 
