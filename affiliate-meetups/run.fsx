@@ -82,7 +82,7 @@ let Run(myTimer: TimerInfo, log: TraceWriter) =
         ]
         |> List.collect (eventsFor >> Seq.toList)
         |> List.sortBy (fun m -> m.Time)
-        |> List.filter (fun m -> m.Time <= horizon)
+        |> List.filter (fun m -> date m <= horizon)
         |> List.map format
         |> String.concat "\n"
 
