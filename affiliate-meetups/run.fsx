@@ -45,7 +45,7 @@ let format (m:Meetup) =
     let where = 
         match venue with
         | None -> 
-            ":question: " + m.Group.LocalizedLocation
+            ":question: N/A" // + m.Group.LocalizedLocation
         | Some(venue) -> 
             sprintf "%s, %s" venue.City venue.LocalizedCountryName
     
