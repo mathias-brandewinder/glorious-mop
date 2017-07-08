@@ -23,8 +23,7 @@ let meetupKey () =
     appSettings.["MeetupKey"]
 
 let createRequest groupName = 
-    meetupKey ()
-    |> sprintf "http://api.meetup.com/%s/events" groupName
+    sprintf "https://api.meetup.com/%s/events" groupName
     
 let eventsFor groupName =
     groupName
