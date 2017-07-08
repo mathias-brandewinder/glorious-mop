@@ -24,7 +24,7 @@ let meetupKey () =
 
 let createRequest groupName = 
     meetupKey ()
-    |> sprintf "http://api.meetup.com/%s/events?&sign=true&key=%s&photo-host=public&page=20&fields=short_link" groupName
+    |> sprintf "http://api.meetup.com/%s/events" groupName
     
 let eventsFor groupName =
     groupName
@@ -45,13 +45,14 @@ let format (m:Meetup) =
     let venue = m.Venue
     let where = 
         match venue with
-        | None -> "N/A"
+        | None -> 
+            ":question: " + m.Group.LocalizedLocation
         | Some(venue) -> 
             sprintf "%s, %s" venue.City venue.LocalizedCountryName
     
     let time = m |> date |> formatDate
     let title = m.Name
-    let url = m.ShortLink
+    let url = m.Link
 
     sprintf """%s, %s: F# meetup "%s" %s #fsharp""" where time title url
 
