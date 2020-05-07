@@ -94,6 +94,7 @@ let Run(myTimer: TimerInfo, log: TraceWriter) =
             "FSharpSeattle"
             "FSharp-Korea"
             "Triangle-F"
+            "FSharpOnline"
         ]
         |> List.collect (eventsFor >> Seq.toList)
         |> List.sortBy (fun m -> m.Time)
